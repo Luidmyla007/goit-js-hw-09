@@ -12,13 +12,10 @@ function getRandomHexColor() {
 BtnStart.addEventListener("click", () => {
   timerId = setInterval(() => {
     getRandomHexColor();
-      console.log("Start");
-  }, 1000);
-    
+     }, 1000);    
 });
 
 BtnStop.addEventListener("click", () => {
     clearInterval(timerId); 
-    console.log("finish"); 
 });
 
