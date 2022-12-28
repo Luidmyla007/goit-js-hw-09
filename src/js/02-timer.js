@@ -4,11 +4,12 @@ import Notiflix from 'notiflix';
 
 const dateSelect = document.querySelector('#datetime-picker');
 const btnStart = document.querySelector('button[data-start]');
+const timerDays = document.querySelector('.value[data-days]'); const timerHours = document.querySelector('.value[data-hours]');
+const timerMinutes = document.querySelector('.value[data-minutes]');
+const timerSeconds = document.querySelector('.value[data-seconds]');
 
 btnStart.setAttribute('disabled', true);
 const date = new Date();
-
-// let ms = Number(selectDate.getTime()) - date.getTime();
 
 function convertMs(ms) {
   // Number of milliseconds per unit of time
@@ -26,7 +27,13 @@ function convertMs(ms) {
   // Remaining seconds
   const seconds = Math.floor((((ms % day) % hour) % minute) / second);
 
-  return { days, hours, minutes, seconds };
+  timerDays.textContent = days;
+  timerHours.textContent = hours;
+  timerMinutes.textContent = minutes;
+  timerSeconds.textContent = seconds;
+
+
+   return { days, hours, minutes, seconds };
 }
 
 // console.log(convertMs(2000)); // {days: 0, hours: 0, minutes: 0, seconds: 2}
@@ -49,17 +56,14 @@ const options = {
         return
         };
      btnStart.removeAttribute('disabled');
-    let ms = Number(selectDate.getTime()) - date.getTime();
-
-   btnStart.addEventListener("click", () => {
-  timerId = setInterval(() => {
-    convertMs(ms);
-   }, 1000);    
-});
-   
-   
-  },
- 
+     btnStart.addEventListener("click", () => {
+       timerId = setInterval(() => {
+       const date = new Date();
+       let ms = Number(selectDate.getTime()) - date.getTime();
+       convertMs(ms);   
+      }, 1000);    
+    });   
+  }, 
 };
 
 flatpickr(dateSelect, options);
