@@ -38,7 +38,8 @@ function convertMs(ms) {
   timerSeconds.textContent = seconds;
 
   if (!days & !hours & !minutes & !seconds) {
-    clearInterval(timerId);      
+    clearInterval(timerId);   
+    location.reload();
   }
   
    return { days, hours, minutes, seconds };
