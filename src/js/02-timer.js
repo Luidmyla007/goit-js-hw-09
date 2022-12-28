@@ -2,14 +2,19 @@ import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
 import Notiflix from 'notiflix';
 
+
 const dateSelect = document.querySelector('#datetime-picker');
 const btnStart = document.querySelector('button[data-start]');
-const timerDays = document.querySelector('.value[data-days]'); const timerHours = document.querySelector('.value[data-hours]');
+const timerDays = document.querySelector('.value[data-days]');
+const timerHours = document.querySelector('.value[data-hours]');
 const timerMinutes = document.querySelector('.value[data-minutes]');
 const timerSeconds = document.querySelector('.value[data-seconds]');
+const timerInputs = document.querySelector('.value');
 
 btnStart.setAttribute('disabled', true);
 const date = new Date();
+
+let timerId = null;
 
 function convertMs(ms) {
   // Number of milliseconds per unit of time
@@ -32,40 +37,44 @@ function convertMs(ms) {
   timerMinutes.textContent = minutes;
   timerSeconds.textContent = seconds;
 
-
+  if (!days & !hours & !minutes & !seconds) {
+    clearInterval(timerId);
+    btnStart.setAttribute('disabled', true);
+  }
+  
    return { days, hours, minutes, seconds };
 }
-
-// console.log(convertMs(2000)); // {days: 0, hours: 0, minutes: 0, seconds: 2}
-// console.log(convertMs(140000)); // {days: 0, hours: 0, minutes: 2, seconds: 20}
-// console.log(convertMs(24140000)); // {days: 0, hours: 6 minutes: 42, seconds: 20}
-
-let timerId = null;
-
 
 const options = {
   enableTime: true,
   time_24hr: true,
   defaultDate: new Date(),
-  // minDate: new Date(),
   minuteIncrement: 1,
+  // метод onClose
   onClose(selectedDates) {
     const selectDate = selectedDates[0];
+    // если дата из прошлого выводим предупрежд
       if (date.getTime() >= Number(selectDate.getTime())) {
         Notiflix.Notify.failure('Please choose a date in the future');  
         return
-        };
-     btnStart.removeAttribute('disabled');
-     btnStart.addEventListener("click", () => {
-       timerId = setInterval(() => {
-       const date = new Date();
-       let ms = Number(selectDate.getTime()) - date.getTime();
-       convertMs(ms);   
-      }, 1000);    
+    };
+    // если дата из будущего - кнопка старт становится активной
+        btnStart.removeAttribute('disabled');
+    // и на нее можно кликнуть
+    btnStart.addEventListener("click", () => {
+          // при клике запустится обратн таймер
+        timerId = setInterval(() => {
+        const date = new Date();
+        let ms = Number(selectDate.getTime()) - date.getTime();
+          convertMs(ms);           
+        }, 1000);  
+     
     });   
-  }, 
+     
+  },  
+
 };
 
+
+
 flatpickr(dateSelect, options);
-// console.dir(new Date());
-// console.log(new Date().getMilliseconds.length);
