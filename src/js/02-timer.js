@@ -38,8 +38,7 @@ function convertMs(ms) {
   timerSeconds.textContent = seconds;
 
   if (!days & !hours & !minutes & !seconds) {
-    clearInterval(timerId);
-    btnStart.setAttribute('disabled', true);
+    clearInterval(timerId);      
   }
   
    return { days, hours, minutes, seconds };
