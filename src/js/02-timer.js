@@ -9,7 +9,7 @@ const timerDays = document.querySelector('.value[data-days]');
 const timerHours = document.querySelector('.value[data-hours]');
 const timerMinutes = document.querySelector('.value[data-minutes]');
 const timerSeconds = document.querySelector('.value[data-seconds]');
-const timerInputs = document.querySelector('.value');
+
 
 btnStart.setAttribute('disabled', true);
 const date = new Date();
@@ -45,7 +45,7 @@ function convertMs(ms) {
   timerMinutes.textContent = minutes;
   timerSeconds.textContent = seconds;
 
-  if (!days & !hours & !minutes & !seconds) {
+  if (!Number(days) & !Number(hours) & !Number(minutes) & !Number(seconds)) {
     clearInterval(timerId);   
     location.reload();
   }
@@ -86,3 +86,25 @@ const options = {
 
 
 flatpickr(dateSelect, options);
+
+
+// стилі
+// const myTimer = document.querySelector('.timer');
+// myTimer.style.paddingTop = "30px";
+// myTimer.style.display = "flex";
+// myTimer.style.gap = "30px";
+// const myField = document.querySelector('.field');
+// console.log(myField);
+// myField.style.textAlign = "center";
+// myField.style.display = "flex";
+
+// myField.style.flexDirection = "column";
+
+
+
+// console.log(myValue);
+// myValue.style.display = "block";
+// myValue.style.fontSize = "30px";
+// myValue.style.fontWeight = "600";
+
+
