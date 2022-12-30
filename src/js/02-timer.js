@@ -20,10 +20,6 @@ function addLeadingZero(value) {
   return String(value).padStart(2, '0');
 };
 
-function addLeadingZeroYear(value) {
-  return String(value).padStart(3, '0');
-};
-
 function convertMs(ms) {
   // Number of milliseconds per unit of time
   const second = 1000;
@@ -32,7 +28,7 @@ function convertMs(ms) {
   const day = hour * 24;
 
   // Remaining days
-  const days = addLeadingZeroYear(Math.floor(ms / day));
+  const days = addLeadingZero(Math.floor(ms / day));
   // Remaining hours
   const hours = addLeadingZero(Math.floor((ms % day) / hour));
   // Remaining minutes
@@ -84,27 +80,9 @@ const options = {
 };
 
 
-
 flatpickr(dateSelect, options);
 
 
-// стилі
-// const myTimer = document.querySelector('.timer');
-// myTimer.style.paddingTop = "30px";
-// myTimer.style.display = "flex";
-// myTimer.style.gap = "30px";
-// const myField = document.querySelector('.field');
-// console.log(myField);
-// myField.style.textAlign = "center";
-// myField.style.display = "flex";
 
-// myField.style.flexDirection = "column";
-
-
-
-// console.log(myValue);
-// myValue.style.display = "block";
-// myValue.style.fontSize = "30px";
-// myValue.style.fontWeight = "600";
 
 
