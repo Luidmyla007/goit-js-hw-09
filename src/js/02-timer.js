@@ -4,6 +4,7 @@ import Notiflix from 'notiflix';
 
 
 const dateSelect = document.querySelector('#datetime-picker');
+console.log(dateSelect);
 const btnStart = document.querySelector('button[data-start]');
 const timerDays = document.querySelector('.value[data-days]');
 const timerHours = document.querySelector('.value[data-hours]');
@@ -70,7 +71,8 @@ const options = {
         timerId = setInterval(() => {
         const date = new Date();
         let ms = Number(selectDate.getTime()) - date.getTime();
-          convertMs(ms);           
+          convertMs(ms);  
+          console.log(ms);
         }, 1000);  
      
     });   
