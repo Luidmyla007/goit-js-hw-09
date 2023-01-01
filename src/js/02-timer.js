@@ -82,6 +82,19 @@ const options = {
 
 flatpickr(dateSelect, options);
 
+// стилі
+const myTimer = document.querySelector('.timer');
+myTimer.style.paddingTop = "30px";
+myTimer.style.display = "flex";
+myTimer.style.gap = "30px";
+
+
+
+
+
+
+
+
 
 
 
