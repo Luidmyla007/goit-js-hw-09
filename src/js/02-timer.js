@@ -4,7 +4,6 @@ import Notiflix from 'notiflix';
 
 
 const dateSelect = document.querySelector('#datetime-picker');
-console.log(dateSelect);
 const btnStart = document.querySelector('button[data-start]');
 const timerDays = document.querySelector('.value[data-days]');
 const timerHours = document.querySelector('.value[data-hours]');
@@ -58,12 +57,12 @@ const options = {
   // метод onClose
   onClose(selectedDates) {
     const selectDate = selectedDates[0];
-    // если дата из прошлого выводим предупрежд
+    // если выбрана дата из прошлого выводим предупрежд
       if (date.getTime() >= Number(selectDate.getTime())) {
         Notiflix.Notify.failure('Please choose a date in the future');  
         return
     };
-    // если дата из будущего - кнопка старт становится активной
+    // если выбрана дата из будущего - кнопка старт становится активной
         btnStart.removeAttribute('disabled');
     // и на нее можно кликнуть
     btnStart.addEventListener("click", () => {
@@ -72,7 +71,6 @@ const options = {
         const date = new Date();
         let ms = Number(selectDate.getTime()) - date.getTime();
           convertMs(ms);  
-          console.log(ms);
         }, 1000);  
      
     });   
