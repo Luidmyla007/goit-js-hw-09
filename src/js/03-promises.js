@@ -8,17 +8,17 @@ function onSubmit(event) {
     elements: { delay, step, amount }
   } = event.currentTarget;
 
-  const d = Number(delay.value);
-  const s = Number(step.value);
-  const a = Number(amount.value);
+  const numDelay = Number(delay.value);
+  const numStep = Number(step.value);
+  const numAmount = Number(amount.value);
     
-  for (let i = 1; i <= a; i++) {
+  for (let i = 1; i <= numAmount; i++) {
     let promiseArgs = {};
     promiseArgs.position = i;
     if (promiseArgs.position === 1) {
-      promiseArgs.delay = d;
+      promiseArgs.delay = numDelay;
     }
-    else { promiseArgs.delay = d + s * (i - 1); };
+    else { promiseArgs.delay = numDelay + numStep * (i - 1); };
    
     createPromise(promiseArgs);
    
