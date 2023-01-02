@@ -41,7 +41,7 @@ function convertMs(ms) {
   timerMinutes.textContent = minutes;
   timerSeconds.textContent = seconds;
 
-  if (!Number(days) & !Number(hours) & !Number(minutes) & !Number(seconds)) {
+  if (!Number(days) && !Number(hours) && !Number(minutes) && !Number(seconds)) {
     clearInterval(timerId);   
     location.reload();
   }

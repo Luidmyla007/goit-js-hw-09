@@ -1,7 +1,7 @@
 const chameleonBody = document.querySelector("body");
 const btnStart = document.querySelector('button[data-start]');
 const btnStop = document.querySelector('button[data-stop]');
-
+console.dir(btnStart);
 let timerId = null;
 
 function getRandomHexColor() {
@@ -9,13 +9,26 @@ function getRandomHexColor() {
   chameleonBody.style.backgroundColor = newColor;
 };
 
-btnStart.addEventListener("click", () => {
+
+btnStart.addEventListener('click', onStart);
+btnStop.addEventListener('click', onStop);
+
+function onStart() {
+  btnStart.setAttribute('disabled', true);
   timerId = setInterval(() => {
     getRandomHexColor();
-   }, 1000);    
-});
+  }, 1000); 
+};
 
-btnStop.addEventListener("click", () => {
-    clearInterval(timerId); 
-});
+function onStop() {
+  btnStop.setAttribute('disabled', true);
+  btnStart.removeAttribute('disabled');
+  clearInterval(timerId);
+}
+
+
+
+
+
+
 
