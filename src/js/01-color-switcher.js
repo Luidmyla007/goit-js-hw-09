@@ -1,7 +1,7 @@
 const chameleonBody = document.querySelector("body");
 const btnStart = document.querySelector('button[data-start]');
 const btnStop = document.querySelector('button[data-stop]');
-console.dir(btnStart);
+
 let timerId = null;
 
 function getRandomHexColor() {
@@ -15,9 +15,11 @@ btnStop.addEventListener('click', onStop);
 
 function onStart() {
   btnStart.setAttribute('disabled', true);
+  btnStop.removeAttribute('disabled');
   timerId = setInterval(() => {
     getRandomHexColor();
   }, 1000); 
+ 
 };
 
 function onStop() {
